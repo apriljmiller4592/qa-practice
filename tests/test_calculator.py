@@ -2,35 +2,93 @@ from src.calculator import add, subtract, multiply, divide, power
 import pytest
 
 def test_add():
-    assert add(2, 3) == 5
+
+    first_num = 2
+    second_num = 3
+
+    result = add(first_num, second_num)
+    
+    assert result == 5
 
 def test_add_negative_numbers():
-    assert add(-5, -3) == -8
+
+    first_num = -5
+    second_num = -3
+
+    result = add(first_num, second_num)
+
+    assert result == -8
 
 def test_subtract():
-    assert subtract(3, 2) == 1
+    
+    first_num = 3
+    second_num = 2
+
+    result = subtract(first_num, second_num)
+
+    assert result == 1
 
 def test_multiply():
-    assert multiply(2, 3) == 6
+
+    first_num = 2
+    second_num = 3
+
+    result = multiply(first_num, second_num)
+
+    assert result == 6
 
 def test_divide():
-    assert divide(6, 2) == 3
+
+    first_num = 6
+    second_num = 2
+
+    result = divide(first_num, second_num)
+
+    assert result == 3
 
 def test_divide_by_0():
+
+    first_num = 10
+    second_num = 0
+
     with pytest.raises(ValueError):
-        divide(10, 0)
+        divide(first_num, second_num)
 
 def test_power():
-    assert power(2, 2) == 4
+    
+    first_num = 2
+    second_num = 2
+
+    result = power(first_num, second_num)
+
+    assert result == 4
 
 def test_exponent_0():
-    assert power(2, 0) == 1
+
+    first_num = 2
+    second_num = 0
+
+    result = power(first_num, second_num)
+
+    assert result == 1
 
 def test_negative_base():
-    assert power(-2, 2) == 4
+
+    first_num = -2
+    second_num = 2
+
+    result = power(first_num, second_num)
+
+    assert result == 4
 
 def test_exponent_1():
-    assert power(10, 1) == 10
+
+    first_num = 10
+    second_num = 1
+
+    result = power(first_num, second_num)
+
+    assert result == 10
 
 @pytest.mark.parametrize(
     "a, b, expected",
