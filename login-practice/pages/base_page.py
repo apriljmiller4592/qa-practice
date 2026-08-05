@@ -32,6 +32,17 @@ class BasePage:
         # Type into the text box with the provided text
         element.send_keys(text)
 
+    # Reusable method for retrieving text from a webpage element
+    def get_text(self, locator):
+
+        # Wait until the element appears
+        element = self.wait.until(
+            EC.visibility_of_element_located(locator)
+        )
+
+        # Return the text inside the element
+        return element.text
+
     # Return the title of the current browser page
     def get_title(self):
         return self.driver.title

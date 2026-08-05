@@ -1,14 +1,30 @@
 from pages.login_page import LoginPage
 
-
+# Test that a valid user can login successfully
 def test_valid_login(driver):
 
     # Arrange
+    # Create a login page object and give it the browser
     page = LoginPage(driver)
 
     # Act
+    # Open the login page
     page.open()
+
+    # Enter valid credentials and submit
     page.login("student", "Password123")
 
     # Assert
-    assert "Logged In Successfully" in driver.page_source
+    # Verify that login was successful
+    assert page.success_message() == "Logged In Successfully"
+
+# Test that the login page has the correct title
+def test_login_page_title(driver):
+    # Arrange
+    page = LoginPage(driver)
+
+    # Act 
+    page.open()
+
+    #Assert 
+    assert "Test Login" in page.get_title()
