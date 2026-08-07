@@ -28,3 +28,21 @@ def test_login_page_title(driver):
 
     #Assert 
     assert "Test Login" in page.get_title()
+
+def test_invalid_password(driver):
+
+    # Arrange
+    page = LoginPage(driver)
+
+    # Act
+    page.open()
+
+    page.login(
+        "student",
+        "wrongpassword"
+    )
+
+    # Assert
+    assert page.get_error_message() == (
+        "Your password is invalid!"
+    )
