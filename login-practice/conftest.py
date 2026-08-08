@@ -1,15 +1,19 @@
 import pytest
 
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item):
 
-@pytest.fixture
-def driver():
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service)
+    outcome = yield
 
-    yield driver
+    report = outcome.get_result()
 
-    driver.quit()
+    if report.when == "call" and report.failed:
+
+        driver = item.funcargs.get("driver")
+
+        if driver:
+
+            driver.save_screenshot(
+                "failure.png"
+            )
