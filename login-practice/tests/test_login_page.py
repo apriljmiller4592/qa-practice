@@ -46,3 +46,21 @@ def test_invalid_password(driver):
     assert page.get_error_message() == (
         "Your password is invalid!"
     )
+
+def test_invalid_username(driver):
+
+    # Arrange
+    page = LoginPage(driver)
+
+    # Act
+    page.open()
+
+    page.login(
+        "wrongstudent",
+        "Password123"
+    )
+
+    # Assert
+    assert page.get_error_message() == (
+        "Your username is invalid!"
+    )
